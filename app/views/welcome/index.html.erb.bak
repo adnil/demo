@@ -1,0 +1,61 @@
+<div id="calc">
+</div>
+
+<script>
+//  window.alert('wth');
+</script>
+<script>
+//  window.alert('wtf');
+  var calc = new Array(9);
+  calc[0] = 1;
+//
+//  window.alert('for1');
+  for (var i = 0; i < 10; i++) {
+    calc[i] = new Array(3);
+//    calc[i][0] = 0;
+  }
+//  window.alert(calc[0][0]);
+  for (i = 0; i < 10; i++) {
+    calc[i][0] = Math.floor(Math.random()*88+9);
+    calc[i][1] = Math.floor(Math.random()*4);
+    calc[i][2] = Math.floor(Math.random()*88+9);
+  }
+  for(i = 0; i < 10; i++) {
+    var br=document.createElement("br");
+    var tx=document.createElement("input");
+    var att=document.createAttribute("type");
+    att.value="text";
+    tx.setAttributeNode(att);
+    var lb=document.createElement("label");
+    var node=document.createTextNode(calc[i][0]);
+    lb.appendChild(node);
+    switch(calc[i][1]) {
+    case 0:
+      node=document.createTextNode(" + ");
+      break;
+    case 1:
+      node=document.createTextNode(" - ");
+      break;
+    case 2:
+      node=document.createTextNode(" * ");
+      break;
+    case 3:
+      node=document.createTextNode(" / ");
+      break;
+    }
+    lb.appendChild(node);
+    node=document.createTextNode(calc[i][2]);
+    lb.appendChild(node);
+    var bd=document.getElementById("calc");
+    bd.appendChild(lb);
+    bd.appendChild(tx);
+    bd.appendChild(br);
+  }
+  function check() {
+    var arr = getElementByTag("input");
+    for(i = 0; i < 10; i++) {
+      window.alert(arr[i]); 
+    } 
+  }
+</script>
+

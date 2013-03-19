@@ -1,0 +1,14 @@
+<% w = 0 %>
+<% r = 0 %>
+Your answer:<br />
+<% (1..10).each do |e| %>
+  <% s = e.to_s %>
+  <%= "#{@q[s]} #{@a[s]}"%>
+  <% if @a[s].to_i == @c[s].to_i %>
+    <% r += 1 %>
+  <% elsif %>
+    <% w += 1 %><span style="color:red">Wrong</span>
+  <% end %>
+  <br />
+<% end %>
+Score: <%= "#{r}" %> / 10

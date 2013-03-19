@@ -1,0 +1,26 @@
+<form action="create" method="post">
+  <% (1..10).each do |e| %>
+    <% a = rand(1..9) %>
+    <% b = rand(1..9) %>
+    <% o = rand(0..3) %>
+    <% op = ['+', '-', '×', '÷' ] %>
+    <% case o %>
+    <% when 0%>
+    <% c = a + b %>
+    <% when 1 %>
+    <% c = a - b %>
+    <% when 2 %>
+    <% c = a * b %>
+    <% when 3 %>
+    <% t = a * b %>
+    <% c = a %>
+    <% a = t %>
+    <% end %> 
+
+    <label><%= "#{a} #{op[o]} #{b} = " %></label>
+    <input type="hidden" name="q[<%= "#{e}" %>]" value="<%= "#{a} #{op[o]} #{b} = " %>" />
+    <input type="hidden" name="c[<%= "#{e}" %>]" value="<%= "#{c}" %>" />
+    <input type="text" name="a[<%= "#{e}" %>]" /><br />
+  <% end %>
+  <input type="submit" value="Answer"/>
+</form>
