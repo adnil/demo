@@ -2,7 +2,7 @@
   <% (1..10).each do |e| %>
     <% a = rand(1..9) %>
     <% b = rand(1..9) %>
-    <% o = rand(0..3) %>
+    <% o = @option[:type] == "4" ? rand(0..3) : @option[:type].to_i%>
     <% op = ['+', '-', '×', '÷' ] %>
     <% case o %>
     <% when 0%>
@@ -20,6 +20,8 @@
     <label><%= "#{a} #{op[o]} #{b} = " %></label>
     <input type="hidden" name="q[<%= "#{e}" %>]" value="<%= "#{a} #{op[o]} #{b} = " %>" />
     <input type="hidden" name="c[<%= "#{e}" %>]" value="<%= "#{c}" %>" />
+    <input type="hidden" name="count[count]" value="<%= "#{@count[:count]}" %>" />
+    <input type="hidden" name="level[level]" value="<%= "#{@level[:level]}" %>" />
     <input type="text" name="a[<%= "#{e}" %>]" /><br />
   <% end %>
   <input type="submit" value="Answer"/>

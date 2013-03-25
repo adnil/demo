@@ -8,4 +8,19 @@
   </li>
 <% end %>
 </ul>
-<%= link_to 'New event', :controller => 'events', :action => 'new' %>
+<% #link_to 'New event', :controller => 'events', :action => 'new' %>
+<form action="events/new" method="post">
+
+  <label><input type="radio" name="option[type]" value="0" checked>加法</label>
+  <label><input type="radio" name="option[type]" value="1">減法</label>
+  <label><input type="radio" name="option[type]" value="2">乘法</label>
+  <label><input type="radio" name="option[type]" value="3">除法</label>
+  <label><input type="radio" name="option[type]" value="4">綜合</label>
+  <br />
+  <label><input type="radio" name="option[ar]" value="0" checked>基本</label>
+  <label><input type="radio" name="option[ar]" value="1" checked>四則</label>
+  <input type="hidden" name="count[count]" value="0" />
+  <input type="hidden" name="level[level]" value="2" />
+  <br />
+  <input type="submit" value="Start" />
+</form>

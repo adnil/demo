@@ -3,12 +3,14 @@
 Your answer:<br />
 <% (1..10).each do |e| %>
   <% s = e.to_s %>
-  <%= "#{@q[s]} #{@a[s]}"%>
-  <% if @a[s].to_i == @c[s].to_i %>
+  
+  <% if @a[s] != "" && (@a[s].to_i == @c[s].to_i) %>
     <% r += 1 %>
+    <span style="color:green"><%= "#{@q[s]} #{@a[s]}"%></span>
   <% elsif %>
-    <% w += 1 %><span style="color:red">Wrong</span>
+    <% w += 1 %><span style="color:red"><%= "#{@q[s]} #{@a[s]}"%></span>
   <% end %>
   <br />
 <% end %>
 Score: <%= "#{r}" %> / 10
+<%= r / w %>
