@@ -13,4 +13,20 @@ Your answer:<br />
   <br />
 <% end %>
 Score: <%= "#{r}" %> / 10
-<%= r / w %>
+<form method="post" action="new">
+  <% @count[:count] = @count[:count].to_i + 10 %>
+  <% @count[:correct] = @count[:correct].to_i + r %>
+  <input type="hidden" value="<%= "#{@count[:count]}" %>" name="count[count]">
+  <input type="hidden" value="<%= "#{@count[:correct]}" %>" name="count[correct]">
+  <input type="hidden" value="<%= "#{@option[:type]}" %>" name="option[type]">
+  <% cc = (@count[:correct].to_f / @count[:count].to_f) %>
+  <% case %>
+  <%   when cc > 0.8 %>
+  <%     @level[:level] = @level[:level].to_i + 1 %>
+  <%   when cc < 0.2 %>
+  <%     @level[:level] = @level[:level].to_i - 1 %>
+  <% end %>
+  <input type="hidden" value="<%= "#{@level[:level]}" %>" name="level[level]">
+  <input type="submit" value="Next" />
+</form>
+<button><a href="index">Restart</a></button>

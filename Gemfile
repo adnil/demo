@@ -36,3 +36,6 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+# Twitter Bootstrap Helper for Rails 3
+gem 'bootstrap_helper'

@@ -1,7 +1,8 @@
 <form action="create" method="post">
+  <% @level[:level] = (@level[:level].to_i < 1) ? 1 : @level[:level].to_i %>
   <% (1..10).each do |e| %>
-    <% a = rand(1..9) %>
-    <% b = rand(1..9) %>
+    <% a = rand(10**(@level[:level]-1)...10**@level[:level]) %>
+    <% b = rand(10**(@level[:level]-1)...10**@level[:level]) %>
     <% o = @option[:type] == "4" ? rand(0..3) : @option[:type].to_i%>
     <% op = ['+', '-', '×', '÷' ] %>
     <% case o %>
@@ -20,9 +21,12 @@
     <label><%= "#{a} #{op[o]} #{b} = " %></label>
     <input type="hidden" name="q[<%= "#{e}" %>]" value="<%= "#{a} #{op[o]} #{b} = " %>" />
     <input type="hidden" name="c[<%= "#{e}" %>]" value="<%= "#{c}" %>" />
-    <input type="hidden" name="count[count]" value="<%= "#{@count[:count]}" %>" />
-    <input type="hidden" name="level[level]" value="<%= "#{@level[:level]}" %>" />
     <input type="text" name="a[<%= "#{e}" %>]" /><br />
   <% end %>
+    <input type="hidden" name="option[type]" value="<%= "#{@option[:type]}" %>" />
+    <input type="hidden" name="count[correct]" value="<%= "#{@count[:correct]}" %>" />
+    <input type="hidden" name="count[count]" value="<%= "#{@count[:count]}" %>" />
+    <input type="hidden" name="level[level]" value="<%= "#{@level[:level]}" %>" />
   <input type="submit" value="Answer"/>
 </form>
+<button><a href="index">Restart</a></button>
