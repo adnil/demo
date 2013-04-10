@@ -30,26 +30,25 @@
       <div class="control-group">
         <div class="controls">
           <label>Score: <%= "#{r}" %> / <%= nu - 1 %></label>
-      <% @count[:count] = @count[:count].to_i + nu - 1 %>
-      <% @count[:correct] = @count[:correct].to_i + r %>
-      <input type="hidden" value="<%= "#{@count[:count]}" %>" name="count[count]">
-      <input type="hidden" value="<%= "#{@count[:correct]}" %>" name="count[correct]">
-      <input type="hidden" value="<%= "#{@option[:type]}" %>" name="option[type]">
-      <% cc = (@count[:correct].to_f / @count[:count].to_f) %>
-      <% case %>
-        <% when cc > 0.8 %>
-        <%   @level[:level] = @level[:level].to_i + 1 %>
-        <% when cc < 0.2 %>
-        <%   @level[:level] = @level[:level].to_i - 1 %>
-      <% end %>
-      <input type="hidden" value="<%= "#{@level[:level]}" %>" name="level[level]">
-      <input type="hidden" value="<%= "#{@option[:arc]}" %>" name="option[arc]">
-      <input type="hidden" value="<%= "#{@option[:nu]}" %>" name="option[nu]">
+          <% @count[:count] = @count[:count].to_i + nu - 1 %>
+          <% @count[:correct] = @count[:correct].to_i + r %>
+          <input type="hidden" value="<%= "#{@count[:count]}" %>" name="count[count]">
+          <input type="hidden" value="<%= "#{@count[:correct]}" %>" name="count[correct]">
+          <input type="hidden" value="<%= "#{@option[:type]}" %>" name="option[type]">
+          <% cc = (@count[:correct].to_f / @count[:count].to_f) %>
+          <% case %>
+            <% when cc > 0.8 %>
+            <%   @level[:level] = @level[:level].to_i + 1 %>
+            <% when cc < 0.2 %>
+            <%   @level[:level] = @level[:level].to_i - 1 %>
+          <% end %>
+          <input type="hidden" value="<%= "#{@level[:level]}" %>" name="level[level]">
+          <input type="hidden" value="<%= "#{@option[:arc]}" %>" name="option[arc]">
+          <input type="hidden" value="<%= "#{@option[:nu]}" %>" name="option[nu]">
           <input type="submit" value="Next" class="btn"/>
         </div>
       </div>
     </form>
-      </div>
   </div>
 </div>
 <a href="index" class="btn">Restart</a>
