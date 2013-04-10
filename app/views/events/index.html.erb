@@ -1,16 +1,40 @@
-<form action="new" method="post">
-
-  <label><input type="radio" name="option[type]" value="0" checked>加法</label>
-  <label><input type="radio" name="option[type]" value="1">減法</label>
-  <label><input type="radio" name="option[type]" value="2">乘法</label>
-  <label><input type="radio" name="option[type]" value="3">除法</label>
-  <label><input type="radio" name="option[type]" value="4">綜合</label>
-  <br />
-  <label><input type="radio" name="option[ar]" value="0" checked>基本</label>
-  <label><input type="radio" name="option[ar]" value="1" checked>四則</label>
-  <input type="hidden" name="count[count]" value="0" />
-  <input type="hidden" name="count[correct]" value="0" />
-  <input type="hidden" name="level[level]" value="22" />
-  <br />
-  <input type="submit" value="Start" />
-</form>
+<div class="row">
+  <div class="span12 well">
+    <form class="form-horizontal" action="new" method="post">
+      <div class="control-group">
+        <label class="control-label">運算</label>
+        <div class="controls">
+          <label class="radio inline"><input type="radio" name="option[type]" value="0" checked>加法</label>
+          <label class="radio inline"><input type="radio" name="option[type]" value="1">減法</label>
+          <label class="radio inline"><input type="radio" name="option[type]" value="2">乘法</label>
+          <label class="radio inline"><input type="radio" name="option[type]" value="3">除法</label>
+          <label class="radio inline"><input type="radio" name="option[type]" value="4">綜合</label>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">模式</label>
+        <div class="controls">
+          <label class="radio inline"><input type="radio" name="option[ar]" value="0" checked>基本</label>
+          <label class="radio inline"><input type="radio" name="option[ar]" value="1">四則</label>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">題數</label>
+        <div class="controls">
+          <label class="radio inline"><input type="radio" name="option[nu]" value="2" checked>1</label>
+          <label class="radio inline"><input type="radio" name="option[nu]" value="3">2</label>
+          <label class="radio inline"><input type="radio" name="option[nu]" value="6">5</label>
+          <label class="radio inline"><input type="radio" name="option[nu]" value="11">10</label>
+        </div>
+      </div>
+      <input type="hidden" name="count[count]" value="0" />
+      <input type="hidden" name="count[correct]" value="0" />
+      <input type="hidden" name="level[level]" value="2" />
+      <div class="control-group">
+        <div class="controls">
+          <input type="submit" value="Start" class="btn" />
+        <div class="controls">
+      </div>
+    </form>
+  </div>
+</div>
