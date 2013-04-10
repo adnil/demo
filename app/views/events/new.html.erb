@@ -36,13 +36,23 @@
             <% when 0 %>
               <% o2 = o2 == 3 ? rand(0..2) : o2 %>
               <% c[e] = ope(ope(a, b, o), d, o2) %>
-              <% q[e] = o == 2 ? "(#{a} #{op[o]} #{b}) #{op[o2]} #{d} =" : "#{a} #{op[o]} #{b} #{op[o2]} #{d} =" %>
-              <% q[e] = o == 3 ? "(#{ope(a, b, 2)} #{op[o]} #{b}) #{op[o2]} #{d} =" : "#{a} #{op[o]} #{b} #{op[o2]} #{d} =" %>
+              <% case o %>
+              <% when 2 %>
+                <% q[e] = "#{a} #{op[o]} #{b} #{op[o2]} #{d} =" %>
+              <% when 3 %>
+                <% q[e] = "#{ope(a, b, 2)} #{op[o]} #{b} #{op[o2]} #{d} =" %>
+              <% else %>
+                <% q[e] = o2 > 1 ? "(#{a} #{op[o]} #{b}) #{op[o2]} #{d} =" : "#{a} #{op[o]} #{b} #{op[o2]} #{d} =" %>
+              <% end %>
             <% when 1 %>
+              <% o = o == 3 ? rand(0..2) : o %>
               <% c[e] = ope(a, ope(b, d, o2), o) %>
-              <% q[e] = "#{a} #{op[o]} (#{ope(b, d, 2)} #{op[o2]} #{d}) =" %>            
-              <%# q[e] = o > 1 || o2 < 2 ? "#{a} #{op[o]} (#{b} #{op[o2]} #{d}) =" : "#{a} #{op[o]} #{b} #{op[o2]} #{d} =" %>            
-              <%# q[e] = o2 == 3 ? "#{a} #{op[o]} (#{ope(b, d, 2)} #{op[o2]} #{d}) =" : "#{a} #{op[o]} #{b} #{op[o2]} #{d} =" %>            
+              <% case o2 %>
+              <% when 3 %>
+                <% q[e] = "#{a} #{op[o]} (#{ope(b, d, 2)} #{op[o2]} #{d}) =" %>
+              <% else %>
+                <% q[e] = o == 2 ? "#{a} #{op[o]} #{b} #{op[o2]} #{d} =" : "#{a} #{op[o]} (#{b} #{op[o2]} #{d}) =" %>            
+              <% end %>
             <% end %>  
           <label class="control-label"><%= "#{q[e]}" %></label>
           <input type="hidden" name="q[<%= "#{e}" %>]" value="<%= "#{q[e]}" %>" />
