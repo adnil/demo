@@ -1,89 +1,18 @@
-<% def ope(a, b, o) %> 
-  <% case o %>
-  <% when 0%>
-  <% c = a + b %>
-  <% when 1 %>
-  <% c = a - b %>
-  <% when 2 %>
-  <% c = a * b %>
-  <% when 3 %>
-  <% t = a * b %>
-  <% c = a %>
-  <% a = t %>
-  <% return c %>
-  <% end %>
-<% end%>
 <div class="row">
   <div class="span6">
     <div class="well">
       <form class="form-horizontal" action="create" method="post">
-        <% @level[:level] = (@level[:level].to_i < 1) ? 1 : @level[:level].to_i %>
         <% nu = @option[:nu].to_i %>
         <% (1...nu).each do |e| %>
         <div class="control-group">  
-          <% a = rand(10**(@level[:level]-1)...10**@level[:level]) %>
-          <% b = rand(10**(@level[:level]-1)...10**@level[:level]) %>
-          <% o = @option[:type] == "4" ? rand(0..3) : @option[:type].to_i %>
-          <% op = ['+', '-', '×', '÷' ] %>
-          <% @option[:arc] = @option[:arc] ? @option[:arc].to_i : @option[:ar].to_i %>
-          <% if @option[:arc] == 2 %>
-            <% d = rand(10**(@level[:level]-1)...10**@level[:level]) %>
-            <% o2 = @option[:type] == "4" ? rand(0..3) : @option[:type].to_i %>
-            <% pri = rand(0..1) %>
-            <% q = Array.new(nu) %>
-            <% c = Array.new(nu) %>
-            <% case pri %>
-            <% when 0 %>
-              <% o2 = o2 == 3 ? rand(0..2) : o2 %>
-              <% c[e] = ope(ope(a, b, o), d, o2) %>
-              <% case o %>
-              <% when 2 %>
-                <% q[e] = "#{a} #{op[o]} #{b} #{op[o2]} #{d} =" %>
-              <% when 3 %>
-                <% q[e] = "#{ope(a, b, 2)} #{op[o]} #{b} #{op[o2]} #{d} =" %>
-              <% else %>
-                <% q[e] = o2 > 1 ? "(#{a} #{op[o]} #{b}) #{op[o2]} #{d} =" : "#{a} #{op[o]} #{b} #{op[o2]} #{d} =" %>
-              <% end %>
-            <% when 1 %>
-              <% o = o == 3 ? rand(0..2) : o %>
-              <% c[e] = ope(a, ope(b, d, o2), o) %>
-              <% case o2 %>
-              <% when 3 %>
-                <% q[e] = "#{a} #{op[o]} (#{ope(b, d, 2)} #{op[o2]} #{d}) =" %>
-              <% else %>
-                <% q[e] = o == 2 ? "#{a} #{op[o]} #{b} #{op[o2]} #{d} =" : "#{a} #{op[o]} (#{b} #{op[o2]} #{d}) =" %>            
-              <% end %>
-            <% end %>  
-          <label class="control-label"><%= "#{q[e]}" %></label>
-          <input type="hidden" name="q[<%= "#{e}" %>]" value="<%= "#{q[e]}" %>" />
-          <input type="hidden" name="c[<%= "#{e}" %>]" value="<%= "#{c[e]}" %>" />
-          <% else %> 
-            <% case o %>
-            <% when 0%>
-            <% c = a + b %>
-            <% when 1 %>
-            <% c = a - b %>
-            <% when 2 %>
-            <% c = a * b %>
-            <% when 3 %>
-            <% t = a * b %>
-            <% c = a %>
-            <% a = t %>
-            <% end %> 
-          <label class="control-label"><%= "#{a} #{op[o]} #{b} =" %></label>
-          <input type="hidden" name="q[<%= "#{e}" %>]" value="<%= "#{a} #{op[o]} #{b} = " %>" />
-          <input type="hidden" name="c[<%= "#{e}" %>]" value="<%= "#{c}" %>" />
-          <% end %>
+          <label class="control-label"><%= "#{@q[e]}" %></label>
+          <input type="hidden" name="q[<%= "#{e}" %>]" value="<%= "#{@q[e]}" %>" />
+          <input type="hidden" name="c[<%= "#{e}" %>]" value="<%= "#{@c[e]}" %>" />
           <div class="controls">
             <input type="text" name="a[<%= "#{e}" %>]" />
           </div>
         </div>
-       <% end %>
-       <% if @option[:arc] == 2 %>
-         <% @option[:arc] = @option[:arc] - 1 %>
-       <% else %>
-         <% @option[:arc] = @option[:arc] == 1 ? @option[:arc] + 1 : @option[:arc] %>
-       <% end %>
+        <% end %>
         <input type="hidden" name="option[type]" value="<%= "#{@option[:type]}" %>" />
         <input type="hidden" name="option[arc]" value="<%= "#{@option[:arc]}" %>" />
         <input type="hidden" name="option[nu]" value="<%= "#{@option[:nu]}" %>" />
