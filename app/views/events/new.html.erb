@@ -1,23 +1,28 @@
+<% nu = @option[:nu].to_i %>
+<% number = @count[:number].to_i %>
 <div class="row">
-  <div class="span6">
+  <div class="span12">
     <div class="well">
-      <form class="form-horizontal" action="create" method="post">
-        <% nu = @option[:nu].to_i %>
-        <% (1...nu).each do |e| %>
-        <div class="control-group">  
-          <label class="control-label"><%= "#{@q[e]}" %></label>
-          <input type="hidden" name="q[<%= "#{e}" %>]" value="<%= "#{@q[e]}" %>" />
-          <input type="hidden" name="c[<%= "#{e}" %>]" value="<%= "#{@c[e]}" %>" />
+      <form class="form-horizontal" action="<%= number == 10 ? "create" : "new" %>" method="post">
+        <div class="control-group">
+          <h4>第 <%= "#{number}" %> 題，共 <%= "#{nu-1}" %> 題</h4>
+          <label class="control-label"><%= "#{@q[number]}" %></label>
           <div class="controls">
-            <input type="text" name="a[<%= "#{e}" %>]" />
+            <input type="text" name="a[<%= "#{number}" %>]" />
           </div>
         </div>
+        <% (1...nu).each do |e| %>
+        <input type="hidden" name="q[<%= "#{e}" %>]" value="<%= "#{@q[e]}" %>" />
+        <input type="hidden" name="c[<%= "#{e}" %>]" value="<%= "#{@c[e]}" %>" />
+        <input type="hidden" name="a[<%= "#{e}" %>]" value="<%= "#{@a[e]}" %>" />
         <% end %>
+        <% number += 1 %>
         <input type="hidden" name="option[type]" value="<%= "#{@option[:type]}" %>" />
         <input type="hidden" name="option[arc]" value="<%= "#{@option[:arc]}" %>" />
         <input type="hidden" name="option[nu]" value="<%= "#{@option[:nu]}" %>" />
         <input type="hidden" name="count[correct]" value="<%= "#{@count[:correct]}" %>" />
         <input type="hidden" name="count[count]" value="<%= "#{@count[:count]}" %>" />
+        <input type="hidden" name="count[number]" value="<%= "#{number}" %>" />
         <input type="hidden" name="level[level]" value="<%= "#{@level[:level]}" %>" />
         <div class="control-group">  
          <div class="controls">
@@ -27,7 +32,9 @@
       </form>
     </div>
   </div>
-  <div class="span6">
+</div>
+<div class="row">
+  <div class="span12">
     <div class="well">
      <h4>草稿區加工中</h4>
     </div>

@@ -7,10 +7,14 @@ class EventsController < ApplicationController
     @level = params[:level]
     @level[:level] = (@level[:level].to_i < 1) ? 1 : @level[:level].to_i
     nu = @option[:nu].to_i
-    @q = Array.new(nu)
-    @c = Array.new(nu)
-    (1...nu).each do |e|
-      puts e
+    number = @count[:number].to_i
+    puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    puts number
+    puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    if number == 1
+      @q = Array.new(nu)
+      @c = Array.new(nu)
+      (1...nu).each do |e|
       @a = rand(10**(@level[:level]-1)...10**@level[:level])
       @b = rand(10**(@level[:level]-1)...10**@level[:level])
       @o = @option[:type] == "4" ? rand(0..3) : @option[:type].to_i
@@ -43,15 +47,19 @@ class EventsController < ApplicationController
           end
         end
       else
-        @q[e] = "#{@a} #{@op[@o]} #{@b} ="
-        @c[e] = ope(@a, @b, @o)
+        @q[number] = "#{@a} #{@op[@o]} #{@b} ="
+        @c[number] = ope(@a, @b, @o)
       end
-    end
-    if @option[:arc] == 2
-      @option[:arc] = @option[:arc] - 1
-    else
-      @option[:arc] = @option[:arc] == 1 ? @option[:arc] + 1 : @option[:arc]
-    end
+    elsif 
+      @a = params[:a]
+      @q = params[:q]
+      @c = params[:c]
+      if @option[:arc] == 2
+        @option[:arc] = @option[:arc] - 1
+      else
+        @option[:arc] = @option[:arc] == 1 ? @option[:arc] + 1 : @option[:arc]
+      end
+    end      
   end
   def create
     @a = params[:a]
@@ -65,7 +73,6 @@ class EventsController < ApplicationController
     @c = Array.new(@nu)
     (1...@nu).each do |e|
       @s = e.to_s
-      puts @a[@s]
       if @a[@s] != "" && (@a[e].to_i == @c[e].to_i)
         @r += 1
         @c[e] = true
@@ -78,7 +85,11 @@ class EventsController < ApplicationController
     cc = (@count[:correct].to_f / @count[:count].to_f)
     case 
     when cc > 0.8
-      @level[:level] = @level[:level].to_i + 1
+      if @option[:arc] == 1
+        @option[:arc] = 2
+      elsif
+        @level[:level] = @level[:level].to_i + 1
+      end
     when cc < 0.2
       @level[:level] = @level[:level].to_i - 1
     end
