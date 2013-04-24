@@ -18,12 +18,13 @@
       <div class="control-group">
         <div class="controls">
           <label>Score: <%= "#{@r}" %> / <%= @nu - 1 %></label>
-          <input type="hidden" value="<%= "#{@count[:count]}" %>" name="count[count]">
-          <input type="hidden" value="<%= "#{@count[:correct]}" %>" name="count[correct]">
-          <input type="hidden" value="<%= "#{@option[:type]}" %>" name="option[type]">
-          <input type="hidden" value="<%= "#{@level[:level]}" %>" name="level[level]">
-          <input type="hidden" value="<%= "#{@option[:arc]}" %>" name="option[arc]">
-          <input type="hidden" value="<%= "#{@option[:nu]}" %>" name="option[nu]">
+          <input type="hidden" name="count[count]" value="<%= "#{@count[:count]}" %>">
+          <input type="hidden" name="count[correct]" value="<%= "#{@count[:correct]}" %>">
+          <input type="hidden" name="option[type]" value="<%= "#{@option[:type]}" %>">
+          <input type="hidden" name="level[level]" value="<%= "#{@level[:level]}" %>">
+          <input type="hidden" name="option[arc]" value="<%= "#{@option[:arc]}" %>">
+          <input type="hidden" name="option[nu]" value="<%= "#{@option[:nu]}" %>">
+          <input type="hidden" name="count[number]" value="1" />
           <input type="submit" value="Next" class="btn"/>
         </div>
       </div>

@@ -14,7 +14,9 @@
         <% (1...nu).each do |e| %>
         <input type="hidden" name="q[<%= "#{e}" %>]" value="<%= "#{@q[e]}" %>" />
         <input type="hidden" name="c[<%= "#{e}" %>]" value="<%= "#{@c[e]}" %>" />
+        <% if e < number %>
         <input type="hidden" name="a[<%= "#{e}" %>]" value="<%= "#{@a[e]}" %>" />
+        <% end %>
         <% end %>
         <% number += 1 %>
         <input type="hidden" name="option[type]" value="<%= "#{@option[:type]}" %>" />
@@ -33,6 +35,7 @@
     </div>
   </div>
 </div>
+<% if @option[:arc] == 1 && @level[:level] < 6 && !@q[number-1].include? "÷" %>
 <div class="row">
   <div class="span12">
     <div class="well">
@@ -40,4 +43,43 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="span1 offset<%= @o == 2 ? 6 - @level[:level].to_i : 6 - @level[:level].to_i/2 %>">
+    <input type="text" class="span1" />
+  </div>
+  <div class="span1">
+    <input type="text" class="span1" />
+  </div>
+  <div class="span1">
+    <input type="text" class="span1" />
+  </div>
+  <div class="span1">
+    <input type="text" class="span1" />
+  </div>
+  <div class="span1">
+    <input type="text" class="span1" />
+  </div>
+  <div class="span1">
+    <input type="text" class="span1" />
+  </div>
+  <div class="span1">
+    <input type="text" class="span1" />
+  </div>
+  <div class="span1">
+    <input type="text" class="span1" />
+  </div>
+  <div class="span1">
+    <input type="text" class="span1" />
+  </div>
+  <div class="span1">
+    <input type="text" class="span1" />
+  </div>
+  <div class="span1">
+    <input type="text" class="span1" />
+  </div>
+  <div class="span1">
+    <input type="text" class="span1" />
+  </div>
+</div>
+<% end %>
 <a href="index" class="btn">Restart</a>
